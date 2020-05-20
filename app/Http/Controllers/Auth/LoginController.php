@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -50,13 +51,13 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $messages = [
-            'cpf.exists'               => 'cpf is already registered',
-            'password.required'        => 'Password cannot be empty',
+            'cpf.exists' => 'cpf is already registered',
+            'password.required' => 'Password cannot be empty',
         ];
 
         $request->validate([
             'cpf' => 'required|exists:users',
-            'password' => 'required|string|max:6|min:6',         
+            'password' => 'required|string',    
         ], $messages);
     }
 
@@ -84,10 +85,11 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         $field = 'cpf';
+
         return [
-            $field => $request->get($this->username()),
-            'password' => $request->password,
-        ];
+                $field => $request->get($this->username()),
+                'password' => $request->password,
+            ];    
     }
 
 }

@@ -14,18 +14,17 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('nome');
             $table->string('cpf')->unique();
-            //$table->timestamp('email_verified_at')->nullable();
             $table->date('data_nascimento');
             $table->enum('sexo',['M','F'])->default('M');
             $table->string('cargo_desempenhado',100);
             $table->double('salario',8,2)->default(0)->nullable();
             $table->boolean('situacao');
-            $table->string('password',6);
+            $table->string('password');
             $table->rememberToken();
-
+            
             $table->unsignedBigInteger('endereco_id');
             $table->foreign('endereco_id')
                   ->references('id')
@@ -35,7 +34,6 @@ class CreateUsersTable extends Migration
             $table->foreign('filial_id')
                   ->references('id')
                   ->on('filials');
-
             $table->timestamps();
         });
     }

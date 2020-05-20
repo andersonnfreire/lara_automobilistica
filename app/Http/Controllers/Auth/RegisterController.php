@@ -52,19 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'nome' => ['required', 'string', 'max:255'],
             'cpf' => ['required',   'string','max:11','unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'data_nascimento' => ['required'],
-            'sexo'            => ['required'],
-            'cargo_desempenhado' => ['required'],
-            'situacao'         => ['required'],
-            'endereco.cep'     => ['required'],
-            'endereco.logradouro'     => ['required'],
-            'endereco.numero'     => ['nullable','integer'],
-            'endereco.complemento'=> ['nullable'],
-            'endereco.bairro'=> ['required'],
-            'endereco.cidade'=> ['required'],
-            'endereco.uf'   =>['required'],
-            'endereco.pais' =>['required'],  
+            'password' => ['required', 'min:6','max:6','confirmed'],
         ]);
     }
 
@@ -72,20 +60,14 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Model\User
      */
     protected function create(array $data)
     {
-
-        dd($data);
-
-
-
-        /* return User::create([
-            'name' => $data['name'],
+        return User::create([
+            'nome' => $data['nome'],
             'cpf' => $data['cpf'],
-            'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]); */
+        ]);
     }
 }

@@ -6,7 +6,7 @@
         <div class="card border-primary mb-3" style="max-width: auto;">
             <div class="card-header text-white bg-primary">
                 <h1 class="title-pg">
-                    Cadastrar Funcionario
+                    Cadastrar Funcionário
                 </h1>
             </div>
             <div class="card-body">
@@ -67,11 +67,20 @@
                   </div>
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-3">
                   <label for="cargo_desempenhado">Cargo Desempenhado</label>
                   <input type="text" class="form-control" id="cargo_desempenhado" placeholder="Informe seu cargo" name="cargo_desempenhado">
                 </div>
-                
+                <div class="form-group col-md-3">
+                  <label for="classeFormControlSelect1">Filial</label>
+                  <select class="form-control" id="filial" name="filial">
+                    <option>Filial 1</option>
+                    <option>Filial 2</option>
+                    <option>Filial 3</option>
+                    <option>Filial 4</option>
+                    <option>Filial 5</option>
+                  </select>
+                </div>
               </div>
               <div class="card">
                 <div class="card-header bg-primary text-white">

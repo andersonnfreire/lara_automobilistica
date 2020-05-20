@@ -28,6 +28,7 @@ class CreateAutomovelsTable extends Migration
             $table->foreign('filial_id')
                   ->references('id')
                   ->on('filials');
+                  
             $table->timestamps();
         });
     }
