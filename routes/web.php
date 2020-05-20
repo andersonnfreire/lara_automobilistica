@@ -20,7 +20,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('cadastro/funcionario', function () {
     return view('pages.funcionario.create-edit');
 });
-Route::get('cadastro/automoveis', function () {
+Route::get('cadastro/automovel', function () {
     return view('pages.automovel.create-edit');
 });
 Route::get('cadastro/filial', function () {
