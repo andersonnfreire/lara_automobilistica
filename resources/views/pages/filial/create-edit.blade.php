@@ -12,76 +12,19 @@
           <div class="card-body">
               <div class="form-row">
                   <div class="form-group col-md-4">
-                    <label for="cpf">CPF</label>
+                    <label for="cpf">Nome</label>
                     <input type="cpf" class="form-control" id="cpf" name="cpf">
                   </div>
                   <div class="form-group col-md-3">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <label for="ie">Inscrição Estadual (IE)</label>
+                    <input type="text" class="form-control" id="ie" placeholder="Informe sua inscrição estadual" name="ie">
                   </div>
-
                   <div class="form-group col-md-3">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="confirm-password" class="form-control" id="confirm-password" name="confirm-password">
+                    <label for="cnpj">CNPJ</label>
+                    <input type="text" class="form-control" id="cnpj" placeholder="Informe seu cnpj" name="cnpj">
                   </div>
               </div>
-              <div class="form-row">
-
-                <div class="form-group col-md-4">
-                  <label for="inputAddress">Sexo</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="M" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                      Masculino
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sexo" id="sexo2" value="F">
-                    <label class="form-check-label" for="exampleRadios2">
-                      Feminino
-                    </label>
-                  </div>
-                </div>
-
-                <div class="form-group col-md-3">
-                  <label for="data_nascimento">Data de Nascimento</label>
-                  <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
-                </div>
-                
-            </div>
-            <div class="form-row">
-
-              <div class="form-group col-md-4">
-                <label for="inputAddress">Situação</label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="situacao" id="sexo1" value="true" checked>
-                  <label class="form-check-label" for="exampleRadios1">
-                    Ativo
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="situacao" id="sexo2" value="false">
-                  <label class="form-check-label" for="exampleRadios2">
-                    Inativo
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-group col-md-3">
-                <label for="cargo_desempenhado">Cargo Desempenhado</label>
-                <input type="text" class="form-control" id="cargo_desempenhado" placeholder="Informe seu cargo" name="cargo_desempenhado">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="classeFormControlSelect1">Filial</label>
-                <select class="form-control" id="filial" name="filial">
-                  <option>Filial 1</option>
-                  <option>Filial 2</option>
-                  <option>Filial 3</option>
-                  <option>Filial 4</option>
-                  <option>Filial 5</option>
-                </select>
-              </div>
-            </div>
+          </div>  
             <div class="card">
               <div class="card-header bg-primary text-white">
                 Endereço
