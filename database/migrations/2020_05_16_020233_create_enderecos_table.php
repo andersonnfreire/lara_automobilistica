@@ -23,6 +23,7 @@ class CreateEnderecosTable extends Migration
             $table->string('cidade',100);
             $table->string('uf',2);
             $table->string('pais',100);
+            $table->timestamps();
         });
     }
 

@@ -26,8 +26,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function filials(){
-        return $this->belongsTo(Filial::class);
+    public function filial(){
+        return $this->hasOne(Filial::class);
     }
     public function endereco(){
         return $this->hasOne(Endereco::class);

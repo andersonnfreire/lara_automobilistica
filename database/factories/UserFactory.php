@@ -2,8 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\User;
+use App\Model\Endereco;
+use App\Model\User;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /*
@@ -19,10 +21,16 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'nome' => $faker->name,
+        'cpf' => Str::random(10),
+        'data_nascimento' => $faker->date('Y-m-d', 'now'),
+        'sexo'  => $faker->randomElement(array ('M','F')),
+        'password' => Hash::make('123456'),
+        'cargo_desempenhado' => Str::random(10),
+        'salario' => $faker->numberBetween(2,8),
+        'situacao' => $faker->boolean(),
+        'endereco_id' => factory(Endereco::class)->create()->id,
+        'filial_id' => 1,
         'remember_token' => Str::random(10),
     ];
 });

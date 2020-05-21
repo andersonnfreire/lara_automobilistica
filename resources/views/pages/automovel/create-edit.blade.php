@@ -6,7 +6,7 @@
       <div class="card border-primary mb-3" style="max-width: auto;">
           <div class="card-header text-white bg-primary">
               <h1 class="title-pg">
-                  Cadastrar Automovel
+                  Cadastrar Automóvel
               </h1>
           </div>
           <div class="card-body">

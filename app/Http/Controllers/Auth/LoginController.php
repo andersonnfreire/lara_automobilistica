@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\Filial;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -61,6 +62,7 @@ class LoginController extends Controller
         ], $messages);
     }
 
+    
     /**
     * Get the login username to be used by the controller.
     *

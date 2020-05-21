@@ -17,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('cadastro/funcionario', function () {
-    return view('pages.funcionario.create-edit');
-});
+Route::get('cadastro/funcionario', 'Auth\RegisterController@show')->name('show');
+Route::post('cadastro/funcionario/store', 'Auth\RegisterController@store')->name('cadastrar');
 Route::get('cadastro/automovel', function () {
     return view('pages.automovel.create-edit');
 });

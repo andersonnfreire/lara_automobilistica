@@ -3,34 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UserRequest;
+use App\Model\Endereco;
+use App\Model\Filial;
 use App\Providers\RouteServiceProvider;
 use App\Model\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
     /**
      * Create a new controller instance.
      *
@@ -38,36 +22,62 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Show the application registration form.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return \Illuminate\View\View
      */
-    protected function validator(array $data)
+    public function show()
     {
-        return Validator::make($data, [
-            'nome' => ['required', 'string', 'max:255'],
-            'cpf' => ['required',   'string','max:11','unique:users'],
-            'password' => ['required', 'min:6','max:6','confirmed'],
-        ]);
+
+        $filials = Filial::all();
+
+        
+        return view('pages.funcionario.create-edit',compact('filials'));
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Model\User
-     */
-    protected function create(array $data)
+        
+    public function store(Request $request)
     {
-        return User::create([
+        dd($request);
+
+        /*$validated = $request->validated();
+
+        
+        if($validated->fails())
+        {
+            return redirect()
+            ->route('show')
+            ->withErrors($validated)
+            ->withInput();
+        }
+        else{
+            return view('pages.funcionario.home');
+        }
+        /* if($filial)
+
+
+        $endereco = Endereco::create([
+                   'cep'         => $data['cep'],
+                   'logradouro'  => $data['logradouro'],
+                   'numero'      => $data['numero'],
+                   'complemento' => $data['complemento'],
+                   'bairro'      => $data['bairro'],
+                   'cidade'      => $data['cidade'],
+                   'uf'          => $data['uf'],
+                   'pais'        => $data['pais'],                    
+        ])->id;
+         */
+        
+
+
+        /* return User::create([
             'nome' => $data['nome'],
             'cpf' => $data['cpf'],
             'password' => Hash::make($data['password']),
-        ]);
+        ]); */
     }
 }
