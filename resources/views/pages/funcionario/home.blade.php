@@ -16,7 +16,7 @@
                     <th>Filial</th>
                     <th width='100px'>Ações</th>
                 </tr>
-                @foreach($funcionarios as  $funcionario)
+                @foreach($filiais as  $funcionario)
                 <tr>
                     <td>{{ $funcionario->id}}</td>
                     <td>{{ $funcionario->nome}}</td>

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <form>
+  <form method="POST" class="form" action="{{ route("cadastrar.filial")}}">
       <div class="card border-primary mb-3" style="max-width: auto;">
           <div class="card-header text-white bg-primary">
               <h1 class="title-pg">

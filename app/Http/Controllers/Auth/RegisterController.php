@@ -69,14 +69,10 @@ class RegisterController extends Controller
         
         return view('pages.funcionario.home');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(){
 
-        $funcionarios = \App\Model\User::with('filial')->get();
-        return view('pages.funcionario.home',compact('funcionarios'));
+        $filiais = \App\Model\User::with('filial')->get();
+        return view('pages.funcionario.home',compact('filiais'));
     }
 }
