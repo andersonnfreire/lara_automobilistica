@@ -19,19 +19,10 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('cadastro/funcionario', 'Auth\RegisterController@create');
 Route::post('cadastro/funcionario/store', 'Auth\RegisterController@store')->name('cadastrar.funcionario');
-Route::get('consultar', 'Auth\RegisterController@show');
+Route::get('consultar/funcionario', 'Auth\RegisterController@show');
 
 Route::get('cadastro/automovel', 'Automovel\AutomovelController@create');
-
-
-
-
-Route::get('cadastro/', function () {
-    return view('pages.automovel.create-edit');
-});
+Route::get('cadastro/automovel/store', 'Automovel\AutomovelController@store')->name('cadastrar.automovel');
 Route::get('cadastro/filial', function () {
     return view('pages.filial.create-edit');
-});
-Route::get('consultar/funcionario', function () {
-    return view('pages.funcionario.home');
 });
