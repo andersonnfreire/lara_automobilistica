@@ -20,7 +20,7 @@
           </h1>
       </div>
      
-      <form method="POST" class="form" action="{{ route("cadastrar.funcionario")}}" >
+      <form method="POST" class="form" action="{{ route("cadastrar")}}" >
         @csrf
         <div class="card-body" id="form">
           <div class="form-row">

@@ -25,12 +25,13 @@ class AutomovelRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|string|max:255',
-            'cor' => 'required|string|digits:11|unique:users',
-            'categoria' => 'required|in:entrada,hatch pequeno,hatch médio,sedã médio,sedã grande,SUV,pick-ups',
-            'numero_chassi'     => 'required|string|max:1',
+            'nome' => 'required|string|max:100',
+            'cor' => 'required|string|max:50|',
+            'categoria' => 'required',
+            'numero_chassi' => 'required|integer|unique:automovels',
+            'ano'     => 'required|integer|digits:4',
             'filial' => 'required|integer',
-            'cargo_desempenhado' => 'required|string|max:255',
+            'modelo' => 'required|string|max:50',
         ];
     }
     /**
@@ -44,7 +45,8 @@ class AutomovelRequest extends FormRequest
             'nome.required' => 'Nome não informado',
             'cor.required' => 'Cor não informado',
             'filial.required' => 'Filial não informado',
-            'cargo_desempenhado.required' => 'Cargo Desempenhado não informado',
+            'ano.required' => 'Ano não informado',
+            'modelo.required' => 'Modelo não informado',
             'numero_chassi.required' => 'Numero de chassi não informado',
             'categoria.required' => 'Categoria não informado',
         ];

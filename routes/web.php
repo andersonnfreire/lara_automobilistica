@@ -18,11 +18,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('cadastro/funcionario', 'Auth\RegisterController@create');
-Route::post('cadastro/funcionario/store', 'Auth\RegisterController@store')->name('cadastrar.funcionario');
+Route::post('cadastro/funcionario/store', 'Auth\RegisterController@store')->name('cadastrar');
 Route::get('consultar/funcionario', 'Auth\RegisterController@show');
 
 Route::get('cadastro/automovel', 'Automovel\AutomovelController@create');
-Route::get('cadastro/automovel/store', 'Automovel\AutomovelController@store')->name('cadastrar.automovel');
-Route::get('cadastro/filial', function () {
-    return view('pages.filial.create-edit');
-});
+Route::post('cadastro/automovel/store', 'Automovel\AutomovelController@store')->name('automovel');

@@ -13,7 +13,7 @@ class Automovel extends Model
      * @var array
      */
     protected $fillable = [ 'nome','ano','modelo',
-                            'cor','numero_chassi','categoria'
+                            'cor','numero_chassi','categoria','filial_id'
                           ];
 
                        

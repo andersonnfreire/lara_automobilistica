@@ -19,12 +19,21 @@
               Cadastrar Automóvel
           </h1>
       </div>
-        <form method="POST" class="form" action="{{ route("cadastrar.automovel")}}">
+        <form method="POST" class="form" action="{{ route("automovel")}}">
+          @csrf
           <div class="card-body">
               <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="nome">Nome</label>
                     <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" required autocomplete="nome" autofocus>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="modelo">Modelo</label>
+                    <input type="text" class="form-control" id="modelo" name="modelo" value="{{ old('Modelo') }}" required autocomplete="modelo" autofocus>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="ano">Ano</label>
+                    <input type="text" class="form-control" id="ano" name="ano" value="{{ old('Ano') }}" required autocomplete="ano" autofocus>
                   </div>
                   <div class="form-group col-md-2">
                     <label for="cor">Cor</label>
@@ -36,10 +45,7 @@
                   </div>
               </div>
               <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <label for="cargo_desempenhado">Cargo Desempenhado</label>
-                    <input type="text" class="form-control" id="cargo_desempenhado" value="{{ old('cargo_desempenhado') }}"placeholder="Informe seu cargo" name="cargo_desempenhado" required autocomplete="numero_chassi" autofocus>
-                  </div>
+                  
                   <div class="form-group col-md-3">
                     <label for="classeFormControlSelect1">Categoria</label>
                     <select class="form-control" id="categoria" name="categoria">

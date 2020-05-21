@@ -17,6 +17,7 @@ class CreateAutomovelsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome',100);
             $table->integer('ano');
+            $table->string('modelo',50);
             $table->string('cor',50);
             $table->integer('numero_chassi')->unique();
             $table->enum('categoria',[

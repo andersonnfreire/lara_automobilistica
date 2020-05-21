@@ -11,6 +11,7 @@ $factory->define(Automovel::class, function (Faker $faker) {
         'nome' => $faker->name,
         'ano' => $faker->year('now'),
         'cor' => 'amarelo',
+        'modelo' => 'amarelo',
         'numero_chassi' => $faker->unique()->numberBetween($min = 1000, $max = 9000),
         'categoria' => $faker->randomElement(array (
                                                     'entrada','hatch pequeno','hatch médio',
