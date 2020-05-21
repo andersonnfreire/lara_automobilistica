@@ -28,4 +28,5 @@ class AutomovelController extends Controller
         $filiais = Filial::all();
         return view('pages.automovel.create-edit',compact('filiais'));
     }
+    
 }

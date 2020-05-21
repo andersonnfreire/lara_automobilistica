@@ -20,4 +20,5 @@ class Automovel extends Model
     public function filial(){
         return $this->belongsTo(Filial::class);
     }
+    
 }
