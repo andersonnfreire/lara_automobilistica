@@ -12,12 +12,16 @@
             <table class="table table-striped">
                 <tr>
                     <th>Nome</th>
-                    <th>Descrição</th>
+                    <th>CPF</th>
+                    <th>Filial</th>
                     <th width='100px'>Ações</th>
                 </tr>
+                @foreach($funcionarios as  $funcionario)
                 <tr>
-                    <td>Nome</td>
-                    <td>Valor</td>
+                    <td>{{ $funcionario->id}}</td>
+                    <td>{{ $funcionario->nome}}</td>
+                    <td>{{ $funcionario->filial->nome}}</td>
+                
                     <td>
                         <a href="" class="actions actions-over edit"> 
                             <i class="fas fa-edit"></i>
@@ -26,7 +30,9 @@
                             <i class="fas fa-low-vision"></i>
                         </a>
                     </td>
-                </tr>
+                </tr>    
+                @endforeach
+                
             </table>
         </div>
     </div>

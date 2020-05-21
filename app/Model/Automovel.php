@@ -18,6 +18,6 @@ class Automovel extends Model
 
                        
     public function filial(){
-        return $this->hasOne(Filial::class);
+        return $this->belongsTo(Filial::class);
     }
 }

@@ -16,9 +16,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = ['nome','data_nascimento','sexo',
-    'cpf','cargo_desempenhado','salario',
-    'situacao','password','endereco_id','filial_id'];
-
+                           'cpf','cargo_desempenhado','salario',
+                           'situacao','password','endereco_id','filial_id'
+                          ];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -29,10 +29,10 @@ class User extends Authenticatable
     ];
 
     public function filial(){
-        return $this->hasOne(Filial::class);
+        return $this->belongsTo(Filial::class);
     }
     public function endereco(){
-        return $this->hasOne(Endereco::class);
+        return $this->belongsTo(Endereco::class);
     }
 
 }

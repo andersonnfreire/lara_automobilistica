@@ -10,10 +10,10 @@ class Filial extends Model
 
    
     public function users(){
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
    
     public function automovel(){
-        return $this->belongsTo(Automovel::class);
+        return $this->hasMany(Automovel::class);
     }
 }

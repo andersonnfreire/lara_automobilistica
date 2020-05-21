@@ -8,6 +8,7 @@ use App\Model\Endereco;
 use App\Model\Filial;
 use App\Providers\RouteServiceProvider;
 use App\Model\User;
+use App\User as AppUser;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -30,12 +31,9 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show()
+    public function create()
     {
-
         $filials = Filial::all();
-
-        
         return view('pages.funcionario.create-edit',compact('filials'));
     }
 
@@ -70,6 +68,15 @@ class RegisterController extends Controller
         ]);
         
         return view('pages.funcionario.home');
-        
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(){
+
+        $funcionarios = \App\Model\User::with('filial')->get();
+        return view('pages.funcionario.home',compact('funcionarios'));
     }
 }
