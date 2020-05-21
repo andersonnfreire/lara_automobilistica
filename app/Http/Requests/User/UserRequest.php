@@ -25,21 +25,21 @@ class UserRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:255',
-            'cpf' => 'required|string|max:11|unique:users',
-            'password' => 'required|min:6|max:6|confirmed',
+            'cpf' => 'required|string|digits:11|unique:users',
+            'password' => 'required|digits:6|alpha_num|confirmed',
             'sexo'     => 'required|string|max:1',
             'situacao' => 'required|boolean',
-            'data_nascimento' => 'required',
+            'data_nascimento' => 'required|date',
             'filial' => 'required|integer',
-            'cargo_desempenhado' => 'required|string',
-            'cep' => 'required',
-            'logradouro' => 'required',
+            'cargo_desempenhado' => 'required|string|max:255',
+            'cep' => 'required|digits:8',
+            'logradouro' => 'required|string|max:100',
             'numero' => 'integer|nullable',
-            'complemento' => 'nullable|string',
-            'bairro' => 'required',
-            'cidade' => 'required',
-            'uf' => 'required',
-            'pais' => 'required'
+            'complemento' => 'nullable|string|max:100',
+            'bairro' => 'required|string|max:100',
+            'cidade' => 'required|string|max:100',
+            'uf' => 'required|string|max:2|min:2',
+            'pais' => 'required|string|max:100'
         ];
     }
 
@@ -51,20 +51,20 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'Nome é requerido',
-            'cpf.required' => 'CPF é requerid',
+            'nome.required' => 'Nome não informado',
+            'cpf.required' => 'CPF não informado',
             'password.required' => 'Senha não informada',
             'sexo.required'     => 'Sexo não informado',
             'situacao.required' => 'Situacao não informado',
             'data_nascimento.required' => 'Data de Nascimento não informado',
             'filial.required' => 'Filial não informado',
-            'cargo_desempenhado.required' => 'Filial não informado',
-            'cep.required' => 'Filial não informado',
-            'logradouro.required' => 'Filial não informado',
-            'bairro.required' => 'Filial não informado',
-            'cidade.required' => 'Filial não informado',
-            'uf.required' => 'Filial não informado',
-            'pais.required' => 'Filial não informado'
+            'cargo_desempenhado.required' => 'Cargo Desempenhado não informado',
+            'cep.required' => 'CEP não informado',
+            'logradouro.required' => 'Logradouro não informado',
+            'bairro.required' => 'Bairro não informado',
+            'cidade.required' => 'Cidade não informado',
+            'uf.required' => 'UF não informado',
+            'pais.required' => 'Pais não informado'
         ];
     }
 

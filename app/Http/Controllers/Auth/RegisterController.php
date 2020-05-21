@@ -40,44 +40,36 @@ class RegisterController extends Controller
     }
 
         
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        dd($request);
+        //dd($request)
 
-        /*$validated = $request->validated();
-
-        
-        if($validated->fails())
-        {
-            return redirect()
-            ->route('show')
-            ->withErrors($validated)
-            ->withInput();
-        }
-        else{
-            return view('pages.funcionario.home');
-        }
-        /* if($filial)
-
+        $validated = $request->validated();
 
         $endereco = Endereco::create([
-                   'cep'         => $data['cep'],
-                   'logradouro'  => $data['logradouro'],
-                   'numero'      => $data['numero'],
-                   'complemento' => $data['complemento'],
-                   'bairro'      => $data['bairro'],
-                   'cidade'      => $data['cidade'],
-                   'uf'          => $data['uf'],
-                   'pais'        => $data['pais'],                    
+            'cep'         => $request['cep'],
+            'logradouro'  => $request['logradouro'],
+            'numero'      => $request['numero'],
+            'complemento' => $request['complemento'],
+            'bairro'      => $request['bairro'],
+            'cidade'      => $request['cidade'],
+            'uf'          => $request['uf'],
+            'pais'        => $request['pais'],                    
         ])->id;
-         */
+
+        $user = User::create([
+            'nome' => $request['nome'],
+            'cpf' => $request['cpf'],
+            'password' => Hash::make($request['password']),
+            'sexo'     => $request['sexo'],
+            'situacao' => $request['situacao'],
+            'data_nascimento' => $request['data_nascimento'],
+            'filial_id' => $request['filial'],
+            'cargo_desempenhado' => $request['cargo_desempenhado'],
+            'endereco_id' => $endereco,
+        ]);
         
-
-
-        /* return User::create([
-            'nome' => $data['nome'],
-            'cpf' => $data['cpf'],
-            'password' => Hash::make($data['password']),
-        ]); */
+        return view('pages.funcionario.home');
+        
     }
 }
