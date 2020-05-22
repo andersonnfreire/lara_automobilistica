@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Filial;
+use App\Model\Filial;
 use Illuminate\Database\Eloquent\Model;
 
 class Automovel extends Model

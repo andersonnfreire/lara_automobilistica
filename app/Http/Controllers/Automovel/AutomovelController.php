@@ -47,4 +47,9 @@ class AutomovelController extends Controller
         
         return view('pages.automovel.home');
     }
+    public function show(){
+
+        $automoveis = Automovel::with('filial')->get();
+        return view('pages.automovel.home',compact('automoveis'));
+    }
 }

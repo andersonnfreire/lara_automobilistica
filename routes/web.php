@@ -23,3 +23,4 @@ Route::get('consultar/funcionario', 'Auth\RegisterController@show');
 
 Route::get('cadastro/automovel', 'Automovel\AutomovelController@create');
 Route::post('cadastro/automovel/store', 'Automovel\AutomovelController@store')->name('automovel');
+Route::get('consultar/automovel', 'Automovel\AutomovelController@show');

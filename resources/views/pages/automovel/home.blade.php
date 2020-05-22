@@ -12,12 +12,15 @@
             <table class="table table-striped">
                 <tr>
                     <th>Nome</th>
-                    <th>Descrição</th>
+                    <th>Número de Chassi</th>
+                    <th>Filial</th>
                     <th width='100px'>Ações</th>
                 </tr>
+                @foreach ($automoveis as $automovel)
                 <tr>
-                    <td>Nome</td>
-                    <td>Valor</td>
+                    <td>{{$automovel->nome}}</td>
+                    <td>{{$automovel->numero_chassi}}</td>
+                    <td>{{$automovel->filial->nome}}</td>
                     <td>
                         <a href="" class="actions actions-over edit"> 
                             <i class="fas fa-edit"></i>
@@ -25,8 +28,9 @@
                         <a href="" class="actions actions-over delete"> 
                             <i class="fas fa-low-vision"></i>
                         </a>
-                    </td>
+                    </td>               
                 </tr>
+                @endforeach
             </table>
         </div>
     </div>
