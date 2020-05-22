@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('cadastro/funcionario', 'Auth\RegisterController@create');
 Route::post('cadastro/funcionario/store', 'Auth\RegisterController@store')->name('cadastrar');
 Route::get('consultar/funcionario', 'Auth\RegisterController@show');
@@ -24,3 +25,7 @@ Route::get('consultar/funcionario', 'Auth\RegisterController@show');
 Route::get('cadastro/automovel', 'Automovel\AutomovelController@create');
 Route::post('cadastro/automovel/store', 'Automovel\AutomovelController@store')->name('automovel');
 Route::get('consultar/automovel', 'Automovel\AutomovelController@show');
+
+Route::get('cadastro/filial', 'Filial\FilialController@create');
+Route::post('cadastro/filial/store', 'Filial\FilialController@store')->name('inserir');
+Route::get('consultar/filial', 'Filial\FilialController@show');
