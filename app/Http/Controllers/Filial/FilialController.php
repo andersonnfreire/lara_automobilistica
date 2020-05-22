@@ -53,4 +53,9 @@ class FilialController extends Controller
         
         return view('pages.filial.home');
     }
+    public function show()
+    {
+        $filiais = Filial::all();
+        return view('pages.filial.home',compact('filiais'));
+    }
 }

@@ -12,12 +12,15 @@
             <table class="table table-striped">
                 <tr>
                     <th>Nome</th>
-                    <th>Descrição</th>
+                    <th>Inscrição Estadual (IE)</th>
+                    <th>CNPJ</th>
                     <th width='100px'>Ações</th>
                 </tr>
+                @foreach ($filiais as $filial)
                 <tr>
-                    <td>Nome</td>
-                    <td>Valor</td>
+                    <td>{{$filial->nome}}</td>
+                    <td>{{$filial->ie}}</td>
+                    <td>{{$filial->cnpj}}</td>
                     <td>
                         <a href="" class="actions actions-over edit"> 
                             <i class="fas fa-edit"></i>
@@ -26,7 +29,8 @@
                             <i class="fas fa-low-vision"></i>
                         </a>
                     </td>
-                </tr>
+                </tr>    
+                @endforeach
             </table>
         </div>
     </div>
