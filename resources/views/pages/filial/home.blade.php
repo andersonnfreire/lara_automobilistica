@@ -22,7 +22,7 @@
                     <td>{{$filial->ie}}</td>
                     <td>{{$filial->cnpj}}</td>
                     <td>
-                        <a href="" class="actions actions-over edit"> 
+                        <a href="{{url("consultar/filial/$filial->id")}}" class="actions actions-over edit"> 
                             <i class="fas fa-edit"></i>
                         </a>
                         <a href="" class="actions actions-over delete"> 

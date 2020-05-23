@@ -17,7 +17,7 @@
                 Cadastrar Filial
             </h1>
         </div>
-        @if()
+        @if(isset($filial))
           <form method="post" action="{{ url("consultar/filial/update/$filial->id")}}">       
         @else
           <form method="post" class="form" action="{{ route("inserir") }}">
@@ -28,15 +28,15 @@
               <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" value="{{ old('nome') }}" required autocomplete="nome" autofocus>
+                    <input type="text" class="form-control" id="nome" name="nome" value="{{ @old("nome", isset($filial->nome)? $filial->nome : '')}}" required autocomplete="nome" autofocus>
                   </div>
                   <div class="form-group col-md-3">
                     <label for="ie">Inscrição Estadual (IE)</label>
-                    <input type="text" class="form-control" id="ie" placeholder="Informe sua inscrição estadual" name="ie" value="{{ old('ie') }}" required autocomplete="ie" autofocus>
+                    <input type="text" class="form-control" id="ie" placeholder="Informe sua inscrição estadual" name="ie" value="{{ @old("ie", isset($filial->ie)? $filial->ie : '')}}" required autocomplete="ie" autofocus>
                   </div>
                   <div class="form-group col-md-3">
                     <label for="cnpj">CNPJ</label>
-                    <input type="text" class="form-control" id="cnpj" placeholder="Informe seu cnpj" name="cnpj" value="{{ old('cnpj') }}" required autocomplete="cnpj" autofocus>
+                    <input type="text" class="form-control" id="cnpj" placeholder="Informe seu cnpj" name="cnpj" value="{{ @old("cnpj", isset($filial->cnpj)? $filial->cnpj : '')}}" required autocomplete="cnpj" autofocus>
                   </div>
               </div>
           </div>  
@@ -49,7 +49,7 @@
                 <div class="form-group col-md-4">
                   <label for="inputCEP">CEP</label>
                   <div class="input-group">
-                    <input class="form-control py-2 col" type="search" value="" name="cep" id="example-search-input">
+                    <input class="form-control py-2 col" type="search" value="{{ @old("ie", isset($filial->endereco->cep)? $filial->endereco->cep : '')}}" name="cep" id="example-search-input">
                     <span class="input-group-append">
                       <button class="btn btn-outline-secondary bg-primary" type="button">
                           <i class="fa fa-search "></i>
@@ -61,34 +61,34 @@
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="logradouro">Logradouro</label>
-                  <input type="text" class="form-control" id="logradouro" name="logradouro">
+                  <input type="text" class="form-control" id="logradouro" name="logradouro" value="{{ @old("logradouro", isset($filial->endereco->logradouro)? $filial->endereco->logradouro : '')}}">
                 </div>
 
                 <div class="form-group col-md-1">
                   <label for="numero">Número</label>
-                  <input type="number" class="form-control" id="numero" name="numero">
+                  <input type="number" class="form-control" id="numero" name="numero" value="{{ @old("numero", isset($filial->endereco->numero)? $filial->endereco->numero : '')}}">
                 </div>
                 <div class="form-group col-md-3">
                   <label for="complemento">Complemento</label>
-                  <input type="text" class="form-control" id="complemento" name="complemento">
+                  <input type="text" class="form-control" id="complemento" name="complemento" value="{{ @old("complemento", isset($filial->endereco->complemento)? $filial->endereco->complemento : '')}}">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="bairro">Bairro</label>
-                  <input type="text" class="form-control" id="bairro" name="bairro">
+                  <input type="text" class="form-control" id="bairro" name="bairro" value="{{ @old("bairro", isset($filial->endereco->bairro)? $filial->endereco->bairro : '')}}">
                 </div>
                 <div class="form-group col-md-3">
                   <label for="cidade">Cidade</label>
-                  <input type="text" class="form-control" id="cidade" name="cidade">
+                  <input type="text" class="form-control" id="cidade" name="cidade" value="{{ @old("cidade", isset($filial->endereco->cidade)? $filial->endereco->cidade : '')}}">
                 </div>
                 <div class="form-group col-md-1">
                   <label for="uf">UF</label>
-                  <input type="text" class="form-control" id="uf" name="uf">
+                  <input type="text" class="form-control" id="uf" name="uf" value="{{ @old("uf", isset($filial->endereco->uf)? $filial->endereco->uf : '')}}">
                 </div>
                 <div class="form-group col-md-1">
                   <label for="pais">Pais</label>
-                  <input type="text" class="form-control" id="pais" name="pais">
+                  <input type="text" class="form-control" id="pais" name="pais" value="{{ @old("pais", isset($filial->endereco->pais)? $filial->endereco->pais : '') }}">
                 </div>
               </div>
             </div>

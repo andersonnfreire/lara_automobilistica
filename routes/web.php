@@ -31,7 +31,7 @@ Route::get('cadastro/automovel', 'Automovel\AutomovelController@create');
 Route::post('cadastro/automovel/store', 'Automovel\AutomovelController@store')->name('automovel');
 
 Route::get('consultar/filial', 'Filial\FilialController@show');
-Route::get('consultar/filial/{id}', 'Filial\FilialController@edit')->name('update');
+Route::get('consultar/filial/{id}', 'Filial\FilialController@edit');
 Route::post('consultar/filial/update/{id}', 'Filial\FilialController@update');
 Route::get('cadastro/filial', 'Filial\FilialController@create');
 Route::post('cadastro/filial/store', 'Filial\FilialController@store')->name('inserir');

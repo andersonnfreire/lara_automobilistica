@@ -58,4 +58,50 @@ class FilialController extends Controller
         $filiais = Filial::all();
         return view('pages.filial.home',compact('filiais'));
     }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
+
+        $filial = Filial::find($id)->with('endereco')->first();
+        return view('pages.filial.create-edit', compact('filial'));
+    }
+    public function update(FilialRequest $request, $id) {
+        
+        
+        $filial = new Filial();
+        $update = $filial->where('id',$id)->with('endereco')->first();
+        if($update)
+        {            
+            $update->endereco->cep = $request['cep'];
+            $update->endereco->logradouro = $request['logradouro'];
+            $update->endereco->numero = $request['numero'];
+            $update->endereco->complemento = $request['complemento'];
+            $update->endereco->bairro = $request['bairro'];
+            $update->endereco->cidade = $request['cidade'];
+            $update->endereco->uf = $request['uf'];
+            $update->endereco->pais = $request['pais'];
+            $update->endereco->save();
+
+            $update->nome = $request['nome'];
+            $update->ie = $request['ie'];
+            $update->cnpj = $request['cnpj'];
+            $update->save();     
+            
+              //verifica se os dados foram alterados
+            //  dd($user->filial->id);  
+            if($update)
+            {
+                return redirect("consultar/filial");
+            }
+            else
+            {
+                return redirect()->back()->with(['errors'=>'Falha ao editar']);
+            }
+        }
+       
+        
+    }
 }
