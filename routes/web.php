@@ -19,6 +19,9 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('consultar/funcionario', 'Auth\RegisterController@show');
+Route::put('resetar/senha/{id}', 'Auth\RegisterController@resetar')->name('teste');
+Route::get('consultar/funcionario/{id}', 'Auth\RegisterController@edit')->name('oi');
+Route::post('consultar/funcionario/update/{id}', 'Auth\RegisterController@update');
 Route::get('cadastro/funcionario', 'Auth\RegisterController@create');
 Route::post('cadastro/funcionario/store', 'Auth\RegisterController@store')->name('cadastrar');
 

@@ -23,7 +23,7 @@
                     <td>{{ $funcionario->filial->nome}}</td>
                 
                     <td>
-                        <a href="" class="actions actions-over edit"> 
+                        <a href="{{url("consultar/funcionario/$funcionario->id")}}" class="actions actions-over edit"> 
                             <i class="fas fa-edit"></i>
                         </a>
                         <a href="" class="actions actions-over delete"> 
