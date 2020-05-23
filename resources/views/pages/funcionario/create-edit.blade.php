@@ -37,11 +37,8 @@
       @else
         <form method="POST" class="form" action="{{ route("cadastrar")}}" >
       @endif
-<<<<<<< HEAD
-=======
-
->>>>>>> master
-        @csrf
+      
+      @csrf
         <div class="card-body" id="form">
           <div class="form-row">
             <div class="form-group col-md-4">
