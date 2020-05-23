@@ -17,7 +17,12 @@
                 Cadastrar Filial
             </h1>
         </div>
-        <form method="post" class="form" action="{{ route("inserir") }}">
+        @if()
+          <form method="post" action="{{ url("consultar/filial/update/$filial->id")}}">       
+        @else
+          <form method="post" class="form" action="{{ route("inserir") }}">
+        @endif
+
           @csrf
           <div class="card-body">
               <div class="form-row">

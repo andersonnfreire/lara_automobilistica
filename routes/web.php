@@ -19,13 +19,19 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('consultar/funcionario', 'Auth\RegisterController@show');
+Route::put('resetar/senha/{id}', 'Auth\RegisterController@resetar')->name('teste');
+Route::get('consultar/funcionario/{id}', 'Auth\RegisterController@edit')->name('editar');
+Route::post('consultar/funcionario/update/{id}', 'Auth\RegisterController@update');
 Route::get('cadastro/funcionario', 'Auth\RegisterController@create');
 Route::post('cadastro/funcionario/store', 'Auth\RegisterController@store')->name('cadastrar');
+
 
 Route::get('consultar/automovel', 'Automovel\AutomovelController@show');
 Route::get('cadastro/automovel', 'Automovel\AutomovelController@create');
 Route::post('cadastro/automovel/store', 'Automovel\AutomovelController@store')->name('automovel');
 
 Route::get('consultar/filial', 'Filial\FilialController@show');
+Route::get('consultar/filial/{id}', 'Filial\FilialController@edit')->name('update');
+Route::post('consultar/filial/update/{id}', 'Filial\FilialController@update');
 Route::get('cadastro/filial', 'Filial\FilialController@create');
 Route::post('cadastro/filial/store', 'Filial\FilialController@store')->name('inserir');
