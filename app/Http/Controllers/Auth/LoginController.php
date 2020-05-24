@@ -52,13 +52,13 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $messages = [
-            'cpf.exists' => 'CPF inválido ou Funcionario não está ativo',
+            'cpf.exists' => 'CPF não cadastrado no banco ou Funcionario não está ativo',
             'password.required' => 'Password cannot be empty',
         ];
 
         $request->validate([
-            'cpf' => 'required|exists:users',
-            'password' => 'required|string|min:6|max:6',    
+            'cpf' => 'required|cpf|exists:users',
+            'password' => 'required|string|min:6|max:6|alpha_num',    
         ], $messages);
     }
 
