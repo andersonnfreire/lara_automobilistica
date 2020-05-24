@@ -69,7 +69,7 @@
               <div class="form-group col-md-4">
                 <label for="sexo">Sexo</label>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="K" checked>
+                  <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="{{ @old("sexo", isset($user->sexo)? $user->sexo : 'M')}}" checked>
                   <label class="form-check-label" for="sexo">
                     Masculino
                   </label>

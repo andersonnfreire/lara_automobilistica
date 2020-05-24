@@ -36,7 +36,7 @@
                   </div>
                   <div class="form-group col-md-3">
                     <label for="cnpj">CNPJ</label>
-                    <input type="text" class="form-control" id="cnpj" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarCampo(this);" name="cnpj" value="{{ @old("cnpj", isset($filial->cnpj)? $filial->cnpj : '')}}" required autocomplete="cnpj" autofocus>
+                    <input type="text" class="form-control" id="cnpj" name="cnpj" value="{{ @old("cnpj", isset($filial->cnpj)? $filial->cnpj : '')}}" required autocomplete="cnpj" autofocus>
                   </div>
               </div>
           </div>  

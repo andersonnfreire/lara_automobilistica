@@ -20,5 +20,14 @@ class Automovel extends Model
     public function filial(){
         return $this->belongsTo(Filial::class);
     }
+    public function validarAno($ano)
+    {
+    
+        $ini_ano         =   strtotime(date('Y') - 100); 
+        $fim_ano           =   strtotime(date('Y'));
+        $year      =   strtotime($ano);
+
+     return (($year >= $ini_ano) && ($year <= $fim_ano));
+    }
     
 }

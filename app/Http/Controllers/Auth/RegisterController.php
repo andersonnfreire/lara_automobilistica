@@ -27,6 +27,7 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    //Exibindo a pagina de cadastro dos funcionarios
     public function create()
     {
         $filiais = Filial::all();
@@ -34,12 +35,10 @@ class RegisterController extends Controller
         return view('pages.funcionario.create-edit',compact('filiais','senha'));
     }
 
-        
+    //Funcionario sendo cadastrado no sistema    
     public function store(UserRequest $request)
     {
-        if(!(ctype_alnum($request->password))){
-            return redirect()->back()->with(['error'=>'Senha não é alfanumerica']);     
-        }
+        
         try {
             $endereco = Endereco::create([
                 'cep'         => $request['cep'],
@@ -70,7 +69,7 @@ class RegisterController extends Controller
             return redirect()->back()->with(['error'=>'Falha ao inserir']);
         } 
     }
-   
+    //Exibindo uma lista de funcionarios
     public function show(){
 
         $filiais = \App\Model\User::with('filial')->get();
@@ -82,6 +81,7 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Exibindo os dados do funcionario para serem alterados
     public function edit($id) {
 
         $user = User::where('id',$id)->with('filial','endereco')->first();
@@ -97,7 +97,7 @@ class RegisterController extends Controller
             return redirect()->back()->with(['error'=>'Ocorreu uma falha']);
         }
     }
-   
+    //Alterando os dados do funcionario
     public function update(UserRequest $request, $id) {
         
         $funcionario = new User();
@@ -140,6 +140,7 @@ class RegisterController extends Controller
             return redirect()->back()->with(['error'=>'Não existe o usuario selecionado']);
         }
     }
+    //Gerando a senha alfanumerica de 6 caracteres
     public function resetar($id){
         $senha = \App\Model\User::random_strings(6);
         if($senha){
@@ -150,6 +151,7 @@ class RegisterController extends Controller
         }
         
     }
+    //Exibindo os dados do usuario para serem deletados
     public function delete($id){
         $funcionario = User::find($id)->with('filial')->first();
         if($funcionario){
@@ -164,6 +166,7 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Excluindo o usuário
     public function destroy($id) {
         $user = User::find($id)->endereco;
         $delete = $user->delete();

@@ -51,4 +51,5 @@ class AutomovelRequest extends FormRequest
             'categoria.required' => 'Categoria não informado',
         ];
     }
+    
 }

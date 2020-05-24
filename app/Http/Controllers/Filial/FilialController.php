@@ -26,14 +26,15 @@ class FilialController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    //Exibindo a pagina de cadastro de filiais
     public function create()
     {
         return view('pages.filial.create-edit');
     }
-
+    //Inserindo dados da filial
     public function store(FilialRequest $request)
     {
-        
+        //verificando se a inscrição estadual é valida
         if(Validador::check($request['uf'], $request['ie'])){
             
             try {
@@ -55,7 +56,7 @@ class FilialController extends Controller
                 ]);
                 
                 if($filial){
-                    return view('pages.filial.home');
+                    return redirect("consultar/filial");
                 }
             } catch (\Exception $th) {
                 return redirect()->back()->with(['error'=>'Falha ao inserir']);
@@ -65,6 +66,8 @@ class FilialController extends Controller
         } 
         
     }
+
+    //Listando as filiais
     public function show()
     {
         $filiais = Filial::all();
@@ -75,6 +78,8 @@ class FilialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //Editando a filial 
     public function edit($id) {
 
         $filial = Filial::find($id)->with('endereco')->first();
@@ -87,8 +92,9 @@ class FilialController extends Controller
         }
         
     }
+    //Dados da filial para serem alterados
     public function update(FilialRequest $request, $id) {
-        
+        //validando a inscrição estadual
         if(Validador::check($request['uf'], $request['ie'])){
             try {
                 $filial = new Filial();
@@ -126,6 +132,7 @@ class FilialController extends Controller
             return redirect()->back()->with(['error'=>'Inscricao nao valida']);
         }
     }
+    //Exibindo os dados da filial para serem deletados
     public function delete($id){
         $filial = Filial::find($id)->with('endereco')->first();
         
@@ -142,6 +149,7 @@ class FilialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Excluindo os dados ligados a filial
     public function destroy($id) {
         
         try {
@@ -149,6 +157,7 @@ class FilialController extends Controller
             $user = new User();
             $filial = new Filial();
 
+            
             $idFilial = $automovel->where('filial_id',$id)->delete();
             $idUser = $user->where('filial_id',$id)->delete();
             $idEndereco = $filial->find($id)->endereco;
