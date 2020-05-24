@@ -34,7 +34,6 @@ class FilialRequest extends FormRequest
             'bairro' => 'required|string|max:100',
             'cidade' => 'required|string|max:100',
             'uf' => 'required|string|max:2|min:2',
-            'pais' => 'required|string|max:100'
         ];
     }
     /**
@@ -52,8 +51,7 @@ class FilialRequest extends FormRequest
             'logradouro.required' => 'Logradouro não informado',
             'bairro.required' => 'Bairro não informado',
             'cidade.required' => 'Cidade não informado',
-            'uf.required' => 'UF não informado',
-            'pais.required' => 'Pais não informado'
+            'uf.required' => 'UF não informado'
         ];
     }
 }

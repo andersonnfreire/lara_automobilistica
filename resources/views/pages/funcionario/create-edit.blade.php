@@ -47,15 +47,15 @@
 
             <div class="form-group col-md-2">
               <label for="cpf">CPF</label>
-              <input type="text" class="form-control" name="cpf" value="{{ @old("cpf", isset($user->cpf)? $user->cpf : '')}}" required autocomplete="cpf" autofocus>                
+              <input type="text" class="form-control" oninput="mascara(this)" name="cpf" value="{{ @old("cpf", isset($user->cpf)? $user->cpf : '')}}" required autocomplete="cpf" autofocus>                
             </div>
             
             <div class="form-group col-md-2">
               <label for="password">Password</label>
               @if (Session::has('senha'))
-                <input type="password" class="form-control" name="password" id="myInput" value="{{session('senha')}}" required autocomplete="new-password">
+                <input type="password" class="form-control" name="password" id="myInput" value="{{session('senha')}}"  readonly>
               @else
-                <input type="password" class="form-control" name="password" id="myInput" value="{{ @old("password", isset($user->password)? $user->password : $senha)}}" required autocomplete="new-password">
+                <input type="password" class="form-control" name="password" id="myInput" value="{{ @old("password", isset($user->password)? $user->password : $senha)}}" readonly>
               @endif
               <input type="checkbox" onclick="exibirSenha()">Show Password
             </div>
@@ -81,7 +81,7 @@
 
               <div class="form-group col-md-3">
                 <label for="data_nascimento">Data de Nascimento</label>
-                <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="{{ @old("data_nascimento", isset($user->data_nascimento)? $user->data_nascimento : 'M')}}">
+                <input onchange="validardataDeNascimento(this.value);" type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="{{ @old("data_nascimento", isset($user->data_nascimento)? $user->data_nascimento : 'M')}}">
               </div>
               
           </div>
@@ -136,19 +136,14 @@
               <div class="form-group col-md-4">
                 <label for="endereco">CEP</label>
                 <div class="input-group">
-                  <input class="form-control py-2 col" type="search" value="{{ @old("cep", isset($user->endereco->cep)? $user->endereco->cep : '')}}" name="cep" id="example-search-input">
-                  <span class="input-group-append">
-                    <button class="btn btn-outline-secondary bg-primary" type="button">
-                        <i class="fa fa-search "></i>
-                    </button>
-                  </span>
+                  <input class="form-control py-2 col" id="cep" name="cep" type="search" value="{{ @old("cep", isset($user->endereco->cep)? $user->endereco->cep : '')}}" name="cep" id="example-search-input">
                 </div>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-4 ">
                 <label for="endereco">Logradouro</label>
-                <input type="text" class="form-control" id="logradouro" name="logradouro" value="{{ @old("logradouro", isset($user->endereco->logradouro)? $user->endereco->logradouro : '')}}">
+                <input type="text" class="form-control" id="rua" name="logradouro" value="{{ @old("logradouro", isset($user->endereco->logradouro)? $user->endereco->logradouro : '')}}">
               </div>
 
               <div class="form-group col-md-1">
@@ -167,18 +162,13 @@
               </div>
               <div class="form-group col-md-3">
                 <label for="endereco">Cidade</label>
-                <input type="text" class="form-control" id="cidade" name="cidade" value="{{ @old("cidade", isset($user->endereco->cidade)? $user->endereco->cidade : '')}}">
+                <input type="text" class="form-control" id="cidade" name="cidade" value="{{ @old("cidade", isset($user->endereco->cidade)? $user->endereco->cidade : '')}}" readonly>
                              
               </div>
 
               <div class="form-group col-md-1">
                 <label for="endereco">Estado</label>
-                <input type="text" class="form-control" id="uf" name="uf" value="{{ @old("uf", isset($user->endereco->uf)? $user->endereco->uf : '')}}">
-              </div>
-
-              <div class="form-group col-md-1">
-                <label for="endereco">Pais</label>
-                <input type="text" class="form-control" id="pais" name="pais" value="{{ @old("pais", isset($user->endereco->pais)? $user->endereco->pais : '')}}">
+                <input type="text" class="form-control" id="uf" name="uf" value="{{ @old("uf", isset($user->endereco->uf)? $user->endereco->uf : '')}}" readonly>
               </div>
             </div>
           </div>

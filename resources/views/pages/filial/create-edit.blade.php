@@ -86,10 +86,6 @@
                   <label for="uf">UF</label>
                   <input type="text" class="form-control" id="uf" name="uf" value="{{ @old("uf", isset($filial->endereco->uf)? $filial->endereco->uf : '')}}">
                 </div>
-                <div class="form-group col-md-1">
-                  <label for="pais">Pais</label>
-                  <input type="text" class="form-control" id="pais" name="pais" value="{{ @old("pais", isset($filial->endereco->pais)? $filial->endereco->pais : '') }}">
-                </div>
               </div>
             </div>
           </div> 

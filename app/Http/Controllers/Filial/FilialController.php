@@ -42,8 +42,7 @@ class FilialController extends Controller
             'complemento' => $request['complemento'],
             'bairro'      => $request['bairro'],
             'cidade'      => $request['cidade'],
-            'uf'          => $request['uf'],
-            'pais'        => $request['pais'],                    
+            'uf'          => $request['uf'],                    
         ])->id;
 
         $filial = Filial::create([
@@ -84,7 +83,6 @@ class FilialController extends Controller
             $update->endereco->bairro = $request['bairro'];
             $update->endereco->cidade = $request['cidade'];
             $update->endereco->uf = $request['uf'];
-            $update->endereco->pais = $request['pais'];
             $update->endereco->save();
 
             $update->nome = $request['nome'];

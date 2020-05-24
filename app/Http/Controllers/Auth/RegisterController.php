@@ -53,8 +53,7 @@ class RegisterController extends Controller
             'complemento' => $request['complemento'],
             'bairro'      => $request['bairro'],
             'cidade'      => $request['cidade'],
-            'uf'          => $request['uf'],
-            'pais'        => $request['pais'],                    
+            'uf'          => $request['uf'],                    
         ])->id;
 
         $user = User::create([
@@ -106,7 +105,6 @@ class RegisterController extends Controller
             $user->endereco->bairro = $request['bairro'];
             $user->endereco->cidade = $request['cidade'];
             $user->endereco->uf = $request['uf'];
-            $user->endereco->pais = $request['pais'];
             $user->endereco->save();
 
             $user->nome = $request['nome'];

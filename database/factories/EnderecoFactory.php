@@ -15,6 +15,5 @@ $factory->define(Endereco::class, function (Faker $faker) {
         'cidade' => $faker->city,
         'bairro' => $faker->state,
         'uf' => 'ab',
-        'pais' => $faker->country
     ];
 });
