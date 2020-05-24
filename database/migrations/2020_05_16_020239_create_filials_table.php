@@ -21,7 +21,8 @@ class CreateFilialsTable extends Migration
             $table->unsignedBigInteger('endereco_id');
             $table->foreign('endereco_id')
                   ->references('id')
-                  ->on('enderecos');
+                  ->on('enderecos')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

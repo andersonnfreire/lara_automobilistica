@@ -24,6 +24,8 @@ Route::get('consultar/funcionario/{id}', 'Auth\RegisterController@edit')->name('
 Route::post('consultar/funcionario/update/{id}', 'Auth\RegisterController@update');
 Route::get('cadastro/funcionario', 'Auth\RegisterController@create');
 Route::post('cadastro/funcionario/store', 'Auth\RegisterController@store')->name('cadastrar');
+Route::get('excluir/funcionario/{id}', 'Auth\RegisterController@delete');
+Route::post('excluir/funcionario/confirmar/{id}', 'Auth\RegisterController@destroy');
 
 
 Route::get('consultar/automovel/{id}', 'Automovel\AutomovelController@edit');

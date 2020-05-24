@@ -28,7 +28,8 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('endereco_id');
             $table->foreign('endereco_id')
                   ->references('id')
-                  ->on('enderecos');
+                  ->on('enderecos')
+                  ->onDelete('cascade');
             
             $table->unsignedBigInteger('filial_id');
             $table->foreign('filial_id')

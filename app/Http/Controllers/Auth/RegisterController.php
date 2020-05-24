@@ -138,4 +138,27 @@ class RegisterController extends Controller
 
         return back()->with(compact('senha'));
     }
+    public function delete($id){
+        $funcionario = User::find($id)->with('filial')->first();
+        
+        return view('pages.funcionario.delete', compact('funcionario'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+        $user = User::find($id);
+        $delete = $user->delete();
+        
+        if($delete)
+        {
+            return redirect("consultar/funcionario");
+        }
+        else
+        {
+            return redirect()->back()->with(['errors'=>'Falha ao excluir']);
+        }
+    }
 }

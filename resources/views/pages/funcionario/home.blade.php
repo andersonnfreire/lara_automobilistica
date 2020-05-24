@@ -26,7 +26,7 @@
                         <a href="{{url("consultar/funcionario/$funcionario->id")}}" class="actions actions-over edit"> 
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="" class="actions actions-over delete"> 
+                        <a href="{{url("excluir/funcionario/$funcionario->id")}}" class="actions actions-over delete"> 
                             <i class="fas fa-low-vision"></i>
                         </a>
                     </td>
