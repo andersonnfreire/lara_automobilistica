@@ -27,7 +27,9 @@ class AutomovelController extends Controller
     public function create()
     {
         $filiais = Filial::all();
-        return view('pages.automovel.create-edit',compact('filiais'));
+        $categorias = ['entrada','hatch pequeno','hatch médio','sedã médio',
+                      'sedã grande','SUV','pick-ups'];
+        return view('pages.automovel.create-edit',compact('filiais','categorias'));
     }
     public function store(AutomovelRequest $request)
     {

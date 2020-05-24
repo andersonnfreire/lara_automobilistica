@@ -17,7 +17,7 @@ class CreateFilialsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome',100);
             $table->integer('ie')->unique();
-            $table->string('cnpj',14)->unique();
+            $table->string('cnpj',18)->unique();
             $table->unsignedBigInteger('endereco_id');
             $table->foreign('endereco_id')
                   ->references('id')

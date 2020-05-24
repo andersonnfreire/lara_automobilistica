@@ -25,8 +25,8 @@ class FilialRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:100',
-            'ie'   =>  'required|integer',
-            'cnpj' =>  'required|digits:14',
+            'ie'   =>  'required',
+            'cnpj' =>  'required|digits:18',
             'cep' => 'required|digits:8',
             'logradouro' => 'required|string|max:100',
             'numero' => 'integer|nullable',
@@ -45,7 +45,7 @@ class FilialRequest extends FormRequest
     {
         return [
             'nome.required' => 'Nome não informado',
-            'ie.required' => 'Inscricao Estadual não informado',
+            'ie.required' => 'Inscricao Estadual não informada',
             'cnpj.required' => 'CNPJ não informada',
             'cep.required' => 'CEP não informado',
             'logradouro.required' => 'Logradouro não informado',

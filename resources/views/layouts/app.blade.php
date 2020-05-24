@@ -14,10 +14,9 @@
     <script src="{{ asset('js/teste.js') }}" defer></script>
     <script src="{{ asset('js/funcoes.js') }}" defer></script>
     <script src="{{ asset('js/cep.js') }}" defer></script>
-
+    <script src="{{ url('"https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"')}}></script>
     <!-- Adicionando JQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    <script src="{{ url('"https://code.jquery.com/jquery-3.4.1.min.js"')}} integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
 
     <!-- Fonts -->

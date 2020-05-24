@@ -36,7 +36,7 @@
                   </div>
                   <div class="form-group col-md-3">
                     <label for="cnpj">CNPJ</label>
-                    <input type="text" class="form-control" id="cnpj" placeholder="Informe seu cnpj" name="cnpj" value="{{ @old("cnpj", isset($filial->cnpj)? $filial->cnpj : '')}}" required autocomplete="cnpj" autofocus>
+                    <input type="text" class="form-control" id="cnpj" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarCampo(this);" name="cnpj" value="{{ @old("cnpj", isset($filial->cnpj)? $filial->cnpj : '')}}" required autocomplete="cnpj" autofocus>
                   </div>
               </div>
           </div>  
@@ -49,12 +49,7 @@
                 <div class="form-group col-md-4">
                   <label for="inputCEP">CEP</label>
                   <div class="input-group">
-                    <input class="form-control py-2 col" type="search" value="{{ @old("ie", isset($filial->endereco->cep)? $filial->endereco->cep : '')}}" name="cep" id="example-search-input">
-                    <span class="input-group-append">
-                      <button class="btn btn-outline-secondary bg-primary" type="button">
-                          <i class="fa fa-search "></i>
-                      </button>
-                    </span>
+                    <input class="form-control py-2 col" type="search" id="cep" name="cep" value="{{ @old("ie", isset($filial->endereco->cep)? $filial->endereco->cep : '')}}" name="cep" id="example-search-input">
                   </div>
                 </div>
               </div>
@@ -80,11 +75,11 @@
                 </div>
                 <div class="form-group col-md-3">
                   <label for="cidade">Cidade</label>
-                  <input type="text" class="form-control" id="cidade" name="cidade" value="{{ @old("cidade", isset($filial->endereco->cidade)? $filial->endereco->cidade : '')}}">
+                  <input type="text" class="form-control" id="cidade" name="cidade" value="{{ @old("cidade", isset($filial->endereco->cidade)? $filial->endereco->cidade : '')}}" readonly>
                 </div>
                 <div class="form-group col-md-1">
                   <label for="uf">UF</label>
-                  <input type="text" class="form-control" id="uf" name="uf" value="{{ @old("uf", isset($filial->endereco->uf)? $filial->endereco->uf : '')}}">
+                  <input type="text" class="form-control" id="uf" name="uf" value="{{ @old("uf", isset($filial->endereco->uf)? $filial->endereco->uf : '')}}" readonly>
                 </div>
               </div>
             </div>
