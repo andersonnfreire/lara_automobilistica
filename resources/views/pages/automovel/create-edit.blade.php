@@ -19,29 +19,35 @@
               Cadastrar Automóvel
           </h1>
       </div>
+      
+      @if(isset($automovel))
+        <form method="post" action="{{ url("consultar/automovel/update/$automovel->id")}}">       
+      @else
         <form method="POST" class="form" action="{{ route("automovel")}}">
-          @csrf
+      @endif
+      
+        @csrf
           <div class="card-body">
               <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="nome">Nome</label>
-                    <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" required autocomplete="nome" autofocus>
+                    <input id="nome" type="text" class="form-control" name="nome" value="{{ @old("nome", isset($automovel->nome)? $automovel->nome : '')}}" required autocomplete="nome" autofocus>
                   </div>
                   <div class="form-group col-md-2">
                     <label for="modelo">Modelo</label>
-                    <input type="text" class="form-control" id="modelo" name="modelo" value="{{ old('Modelo') }}" required autocomplete="modelo" autofocus>
+                    <input type="text" class="form-control" id="modelo" name="modelo" value="{{ @old("modelo", isset($automovel->modelo)? $automovel->modelo : '')}}" required autocomplete="modelo" autofocus>
                   </div>
                   <div class="form-group col-md-2">
                     <label for="ano">Ano</label>
-                    <input type="text" class="form-control" id="ano" name="ano" value="{{ old('Ano') }}" required autocomplete="ano" autofocus>
+                    <input type="text" class="form-control" id="ano" name="ano" value="{{ @old("ano", isset($automovel->ano)? $automovel->ano : '')}}" required autocomplete="ano" autofocus>
                   </div>
                   <div class="form-group col-md-2">
                     <label for="cor">Cor</label>
-                    <input type="text" class="form-control" id="cor" name="cor" value="{{ old('cor') }}" required autocomplete="cor" autofocus>
+                    <input type="text" class="form-control" id="cor" name="cor" value="{{ @old("cor", isset($automovel->cor)? $automovel->cor : '')}}" required autocomplete="cor" autofocus>
                   </div>
                   <div class="form-group col-md-3">
                     <label for="numero_chassi">Número de Chassi</label>
-                    <input type="text" class="form-control" id="numero_chassi" name="numero_chassi" value="{{ old('numero_chassi') }}" required autocomplete="numero_chassi" autofocus>
+                    <input type="text" class="form-control" id="numero_chassi" name="numero_chassi" value="{{ @old("numero_chassi", isset($automovel->numero_chassi)? $automovel->numero_chassi : '')}}" required autocomplete="numero_chassi" autofocus>
                   </div>
               </div>
               <div class="form-row">
@@ -49,13 +55,16 @@
                   <div class="form-group col-md-3">
                     <label for="classeFormControlSelect1">Categoria</label>
                     <select class="form-control" id="categoria" name="categoria">
-                      <option value="entrada">entrada</option>
-                      <option value="hatch pequeno">hatch pequeno</option>
-                      <option value="hatch médio">hatch médio</option>
-                      <option value="sedã médio">sedã médio</option>
-                      <option value="sedã grande">sedã grande</option>
-                      <option value="SUV">SUV</option>
-                      <option value="pick-ups">pick-ups</option>
+                      <option value="">Escolha a categoria </option>
+                      
+                      @foreach ($categorias as $categoria)
+                        <option value="{{$categoria}}"
+                          @if(isset($automovel) && $automovel->categoria == $categoria) 
+                              selected
+                          @endif
+                          >{{$categoria}}
+                        </option>    
+                      @endforeach
                     </select>
                   </div>
                   <div class="form-group col-md-3">
@@ -63,8 +72,16 @@
                     <select class="form-control" id="filial" name="filial">
                       <option value="">Escolha a filial</option>
                       @foreach ($filiais as $filial)
-                        <option value="{{$filial->id}}">{{$filial->nome}}</option>
-                      @endforeach
+                        @if(isset($automovel))
+                          @if($automovel->filial->id == $filial->id)
+                            <option value="{{$filial->id}}" selected>{{$filial->nome}}</option>
+                          @else
+                            <option value="{{$filial->id}}">{{$filial->nome}}</option>
+                          @endif
+                        @else
+                          <option value="{{$filial->id}}">{{$filial->nome}}</option>
+                        @endif                    
+                      @endforeach 
                     </select>
                   </div>
               </div>

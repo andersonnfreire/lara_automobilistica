@@ -52,4 +52,43 @@ class AutomovelController extends Controller
         $automoveis = Automovel::with('filial')->get();
         return view('pages.automovel.home',compact('automoveis'));
     }
+
+    public function edit($id){
+
+        $automovel = Automovel::where('id',$id)->with('filial')->first();
+        
+        $filiais = Filial::all();
+        $categorias = ['entrada','hatch pequeno','hatch médio','sedã médio',
+                      'sedã grande','SUV','pick-ups'];
+
+        return view('pages.automovel.create-edit',compact('automovel','categorias','filiais'));
+    }
+
+    public function update(AutomovelRequest $request,$id){
+        $automovel = new Automovel;
+
+        $automoveis = $automovel->where('id',$id)->first();
+        if($automoveis){
+
+            if(strcmp($automoveis->numero_chassi,$request->numero_chassi)!=0){
+                $automoveis->numero_chassi = $request->numero_chassi;
+            }
+            $automoveis->nome = $request->nome;
+            $automoveis->modelo = $request->modelo;
+            $automoveis->ano = $request->ano;
+            $automoveis->cor = $request->cor;
+            $automoveis->categoria = $request->categoria;
+            $automoveis->filial_id = $request->filial;
+            $automoveis->save();
+            
+            if($automoveis)
+            {
+                return redirect("consultar/automovel");
+            }
+            else
+            {
+                return redirect()->back()->with(['errors'=>'Falha ao editar']);
+            }
+        }
+    }
 }

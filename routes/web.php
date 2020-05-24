@@ -26,6 +26,8 @@ Route::get('cadastro/funcionario', 'Auth\RegisterController@create');
 Route::post('cadastro/funcionario/store', 'Auth\RegisterController@store')->name('cadastrar');
 
 
+Route::get('consultar/automovel/{id}', 'Automovel\AutomovelController@edit');
+Route::post('consultar/automovel/update/{id}', 'Automovel\AutomovelController@update');
 Route::get('consultar/automovel', 'Automovel\AutomovelController@show');
 Route::get('cadastro/automovel', 'Automovel\AutomovelController@create');
 Route::post('cadastro/automovel/store', 'Automovel\AutomovelController@store')->name('automovel');

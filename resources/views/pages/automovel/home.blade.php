@@ -22,7 +22,7 @@
                     <td>{{$automovel->numero_chassi}}</td>
                     <td>{{$automovel->filial->nome}}</td>
                     <td>
-                        <a href="" class="actions actions-over edit"> 
+                        <a href="{{url("consultar/automovel/$automovel->id")}}" class="actions actions-over edit"> 
                             <i class="fas fa-edit"></i>
                         </a>
                         <a href="" class="actions actions-over delete"> 

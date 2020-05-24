@@ -28,7 +28,7 @@ class AutomovelRequest extends FormRequest
             'nome' => 'required|string|max:100',
             'cor' => 'required|string|max:50|',
             'categoria' => 'required',
-            'numero_chassi' => 'required|integer|unique:automovels',
+            'numero_chassi' => 'required|integer',
             'ano'     => 'required|integer|digits:4',
             'filial' => 'required|integer',
             'modelo' => 'required|string|max:50',
