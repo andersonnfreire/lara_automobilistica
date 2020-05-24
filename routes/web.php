@@ -33,6 +33,8 @@ Route::post('consultar/automovel/update/{id}', 'Automovel\AutomovelController@up
 Route::get('consultar/automovel', 'Automovel\AutomovelController@show');
 Route::get('cadastro/automovel', 'Automovel\AutomovelController@create');
 Route::post('cadastro/automovel/store', 'Automovel\AutomovelController@store')->name('automovel');
+Route::get('excluir/automovel/{id}', 'Automovel\AutomovelController@delete');
+Route::post('excluir/automovel/confirmar/{id}', 'Automovel\AutomovelController@destroy');
 
 Route::get('consultar/filial', 'Filial\FilialController@show');
 Route::get('consultar/filial/{id}', 'Filial\FilialController@edit');

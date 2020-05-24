@@ -25,7 +25,7 @@
                         <a href="{{url("consultar/automovel/$automovel->id")}}" class="actions actions-over edit"> 
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="" class="actions actions-over delete"> 
+                        <a href="{{url("excluir/automovel/$automovel->id")}}" class="actions actions-over delete"> 
                             <i class="fas fa-low-vision"></i>
                         </a>
                     </td>               

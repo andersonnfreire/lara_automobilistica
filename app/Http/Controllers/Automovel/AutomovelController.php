@@ -91,4 +91,27 @@ class AutomovelController extends Controller
             }
         }
     }
+    public function delete($id){
+        $automovel = Automovel::find($id)->with('filial')->first();
+        
+        return view('pages.automovel.delete', compact('automovel'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+        $delete = Automovel::find($id)->delete();
+        
+        
+        if($delete)
+        {
+            return redirect("consultar/automovel");
+        }
+        else
+        {
+            return redirect()->back()->with(['errors'=>'Falha ao excluir']);
+        }
+    }
 }

@@ -52,7 +52,7 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $messages = [
-            'cpf.exists' => 'cpf is already registered',
+            'cpf.exists' => 'CPF inválido ou Funcionario não está ativo',
             'password.required' => 'Password cannot be empty',
         ];
 
@@ -91,6 +91,7 @@ class LoginController extends Controller
         return [
                 $field => $request->get($this->username()),
                 'password' => $request->password,
+                'situacao' => '1',
             ];    
     }
 
