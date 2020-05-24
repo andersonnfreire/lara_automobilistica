@@ -58,7 +58,7 @@ class LoginController extends Controller
 
         $request->validate([
             'cpf' => 'required|exists:users',
-            'password' => 'required|string',    
+            'password' => 'required|string|min:6|max:6',    
         ], $messages);
     }
 

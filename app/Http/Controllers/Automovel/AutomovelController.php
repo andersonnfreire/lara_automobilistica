@@ -46,8 +46,14 @@ class AutomovelController extends Controller
                 'filial_id' => $request['filial'],
                 'categoria' => $request['categoria'],
             ]);
+            if($automovel){
+                return redirect("consultar/automovel");
+            }
+            else{
+                return redirect()->back()->with(['error'=>'Erro ao inserir']);
+            }
             
-            return view('pages.automovel.home');
+            
         } catch (\Exception $e) {
             return redirect()->back()->with(['error'=>'Erro ao inserir']);
         }
