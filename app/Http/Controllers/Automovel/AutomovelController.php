@@ -106,9 +106,14 @@ class AutomovelController extends Controller
         }
     }
     public function delete($id){
-        $automovel = Automovel::find($id)->with('filial')->first();
         
-        return view('pages.automovel.delete', compact('automovel'));
+        try {
+            $automovel = Automovel::find($id)->with('filial')->first();
+            return view('pages.automovel.delete', compact('automovel'));
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error'=>'Não encontramos o automovel']);
+        } 
     }
     /**
      * Remove the specified resource from storage.
