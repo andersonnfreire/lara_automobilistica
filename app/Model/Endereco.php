@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Endereco extends Model
 {
     protected $fillable = ['cep','logradouro','numero','complemento',
@@ -15,4 +16,5 @@ class Endereco extends Model
     public function filial(){
         return $this->hasOne(Filial::class);
     }
+    
 }

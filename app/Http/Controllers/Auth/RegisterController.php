@@ -149,7 +149,7 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        $user = User::find($id);
+        $user = User::find($id)->endereco;
         $delete = $user->delete();
         
         if($delete)

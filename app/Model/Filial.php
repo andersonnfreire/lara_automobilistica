@@ -20,4 +20,5 @@ class Filial extends Model
     public function automovel(){
         return $this->hasMany(Automovel::class);
     }
+    
 }
