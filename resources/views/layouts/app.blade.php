@@ -59,13 +59,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-primary" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item bg-primary text-white" href="">
+                                    <a class="dropdown-item bg-primary text-white" href="{{ url('cadastro/automovel') }}">
                                         {{ __('Automóvel') }}
                                     </a>
-                                    <a class="dropdown-item bg-primary text-white" href="">
+                                    <a class="dropdown-item bg-primary text-white" href="{{url('cadastro/filial')}}">
                                         {{ __('Filial') }}
                                     </a>
-                                    <a class="dropdown-item bg-primary text-white" href="">
+                                    <a class="dropdown-item bg-primary text-white" href="{{url('cadastro/funcionario')}}">
                                         {{ __('Funcionario') }}
                                     </a>
                                 </div>
@@ -76,13 +76,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-primary" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item bg-primary text-white" href="">
+                                    <a class="dropdown-item bg-primary text-white" href="{{url('consultar/automovel')}}">
                                         {{ __('Automóvel') }}
                                     </a>
-                                    <a class="dropdown-item bg-primary text-white" href="">
+                                    <a class="dropdown-item bg-primary text-white" href="{{url('consultar/filial')}}">
                                         {{ __('Filial') }}
                                     </a>
-                                    <a class="dropdown-item bg-primary text-white" href="">
+                                    <a class="dropdown-item bg-primary text-white" href="{{url('consultar/funcionario')}}">
                                         {{ __('Funcionario') }}
                                     </a>
                                 </div>

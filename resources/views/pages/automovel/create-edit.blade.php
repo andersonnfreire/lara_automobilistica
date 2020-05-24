@@ -88,7 +88,7 @@
             </div>
           <div class="form-group col">
             <button type="submit" class="btn btn-outline-primary">Confirmar</button>
-            <button type="button" class="btn btn-outline-danger">Cancelar</button>
+            <a type="submit" class="btn btn-danger btn-close" href="{{ route('home') }}">Cancel</a>
           </div>
         </form>
     </div>

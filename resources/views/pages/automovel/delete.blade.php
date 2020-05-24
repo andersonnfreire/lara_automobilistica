@@ -29,6 +29,7 @@
     
     <div class="form-group">
         <button type="submit" class="btn btn-danger">Deletar Automovel : {{$automovel->nome}}</button>
+        <a type="submit" class="btn btn-danger btn-close" href="{{ route('home') }}">Cancel</a>
     </div>
     </form>
 </div>

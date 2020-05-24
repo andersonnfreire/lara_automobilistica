@@ -104,8 +104,6 @@ class FilialController extends Controller
                 $update->cnpj = $request['cnpj'];
                 $update->save();     
                 
-                //verifica se os dados foram alterados
-                //  dd($user->filial->id);  
                 if($update)
                 {
                     return redirect("consultar/filial");

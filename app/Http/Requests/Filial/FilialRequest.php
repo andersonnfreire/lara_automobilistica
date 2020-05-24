@@ -25,7 +25,7 @@ class FilialRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:100',
-            'ie'   =>  'required',
+            'ie'   =>  'required|integer',
             'cnpj' =>  'required|digits:18',
             'cep' => 'required|digits:8',
             'logradouro' => 'required|string|max:100',
