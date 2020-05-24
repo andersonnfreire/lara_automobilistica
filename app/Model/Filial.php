@@ -17,7 +17,7 @@ class Filial extends Model
         return $this->belongsTo(Endereco::class);
     }
    
-    public function automovel(){
+    public function automovels(){
         return $this->hasMany(Automovel::class);
     }
     

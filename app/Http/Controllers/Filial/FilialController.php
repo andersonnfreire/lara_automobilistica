@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Filial;
 use App\Http\Controllers\Controller;
 use App\Model\Filial;
 use App\Http\Requests\Filial\FilialRequest;
+use App\Model\Automovel;
 use App\Model\Endereco;
+use App\Model\User;
 
 class FilialController extends Controller
 {
@@ -101,7 +103,36 @@ class FilialController extends Controller
                 return redirect()->back()->with(['errors'=>'Falha ao editar']);
             }
         }
-       
+    }
+    public function delete($id){
+        $filial = Filial::find($id)->with('endereco')->first();
         
+        return view('pages.filial.delete', compact('filial'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+        
+        $automovel = new Automovel();
+        $user = new User();
+        $filial = new Filial();
+
+        $idFilial = $automovel->where('filial_id',$id)->delete();
+        $idUser = $user->where('filial_id',$id)->delete();
+        $idEndereco = $filial->find($id)->endereco;
+        $delete = $idEndereco->delete();
+
+       
+        if($idEndereco)
+        {
+            return redirect("consultar/filial");
+        }
+        else
+        {
+            return redirect()->back()->with(['errors'=>'Falha ao excluir']);
+        }
     }
 }

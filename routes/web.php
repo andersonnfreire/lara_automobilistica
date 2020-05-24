@@ -39,3 +39,5 @@ Route::get('consultar/filial/{id}', 'Filial\FilialController@edit');
 Route::post('consultar/filial/update/{id}', 'Filial\FilialController@update');
 Route::get('cadastro/filial', 'Filial\FilialController@create');
 Route::post('cadastro/filial/store', 'Filial\FilialController@store')->name('inserir');
+Route::get('excluir/filial/{id}', 'Filial\FilialController@delete');
+Route::post('excluir/filial/confirmar/{id}', 'Filial\FilialController@destroy');

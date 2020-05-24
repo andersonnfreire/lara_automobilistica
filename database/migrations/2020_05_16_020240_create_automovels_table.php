@@ -28,7 +28,8 @@ class CreateAutomovelsTable extends Migration
             $table->unsignedBigInteger('filial_id');
             $table->foreign('filial_id')
                   ->references('id')
-                  ->on('filials');
+                  ->on('filials')
+                  ->onDelete('cascade');
                   
             $table->timestamps();
         });
