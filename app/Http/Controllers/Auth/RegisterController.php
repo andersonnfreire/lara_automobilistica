@@ -6,14 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserRequest;
 use App\Model\Endereco;
 use App\Model\Filial;
-use App\Providers\RouteServiceProvider;
 use App\Model\User;
-use App\User as AppUser;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -42,33 +37,38 @@ class RegisterController extends Controller
         
     public function store(UserRequest $request)
     {
-        //dd($request)
-
-        $validated = $request->validated();
-
-        $endereco = Endereco::create([
-            'cep'         => $request['cep'],
-            'logradouro'  => $request['logradouro'],
-            'numero'      => $request['numero'],
-            'complemento' => $request['complemento'],
-            'bairro'      => $request['bairro'],
-            'cidade'      => $request['cidade'],
-            'uf'          => $request['uf'],                    
-        ])->id;
-
-        $user = User::create([
-            'nome' => $request['nome'],
-            'cpf' => $request['cpf'],
-            'password' => Hash::make($request['password']),
-            'sexo'     => $request['sexo'],
-            'situacao' => $request['situacao'],
-            'data_nascimento' => $request['data_nascimento'],
-            'filial_id' => $request['filial'],
-            'cargo_desempenhado' => $request['cargo_desempenhado'],
-            'endereco_id' => $endereco,
-        ]);
-        
-        return view('pages.funcionario.home');
+        if(!(ctype_alnum($request->password))){
+            return redirect()->back()->with(['error'=>'Senha não é alfanumerica']);     
+        }
+        try {
+            $endereco = Endereco::create([
+                'cep'         => $request['cep'],
+                'logradouro'  => $request['logradouro'],
+                'numero'      => $request['numero'],
+                'complemento' => $request['complemento'],
+                'bairro'      => $request['bairro'],
+                'cidade'      => $request['cidade'],
+                'uf'          => $request['uf'],                    
+            ])->id;
+    
+            $user = User::create([
+                'nome' => $request['nome'],
+                'cpf' => $request['cpf'],
+                'password' => Hash::make($request['password']),
+                'sexo'     => $request['sexo'],
+                'situacao' => $request['situacao'],
+                'data_nascimento' => $request['data_nascimento'],
+                'filial_id' => $request['filial'],
+                'cargo_desempenhado' => $request['cargo_desempenhado'],
+                'endereco_id' => $endereco,
+            ]);
+            if($user)
+            {
+                return redirect("consultar/funcionario");
+            }    
+        }catch (\Exception $e) {
+            return redirect()->back()->with(['error'=>'Falha ao inserir']);
+        } 
     }
    
     public function show(){
@@ -86,60 +86,78 @@ class RegisterController extends Controller
 
         $user = User::where('id',$id)->with('filial','endereco')->first();
 
-        $filiais = Filial::all();
+        if($user)
+        {
+            $filiais = Filial::all();
 
-        return view('pages.funcionario.create-edit', compact('user','filiais'));
+            return view('pages.funcionario.create-edit', compact('user','filiais'));
+        }
+        else
+        {
+            return redirect()->back()->with(['error'=>'Ocorreu uma falha']);
+        }
     }
    
     public function update(UserRequest $request, $id) {
         
-        
         $funcionario = new User();
         $user = $funcionario->where('id',$id)->with('endereco')->first();
+        
         if($user)
-        {            
-            $user->endereco->cep = $request['cep'];
-            $user->endereco->logradouro = $request['logradouro'];
-            $user->endereco->numero = $request['numero'];
-            $user->endereco->complemento = $request['complemento'];
-            $user->endereco->bairro = $request['bairro'];
-            $user->endereco->cidade = $request['cidade'];
-            $user->endereco->uf = $request['uf'];
-            $user->endereco->save();
+        {
+            try {
+                
+                if(!(strcmp($request['password'],"000000")==0)){
+                    $user->password = Hash::make($request['password']);
+                }
 
-            $user->nome = $request['nome'];
-            $user->password = Hash::make($request['password']);
-            $user->sexo     = $request['sexo'];
-            $user->situacao = $request['situacao'];
-            $user->data_nascimento = $request['data_nascimento'];
-            $user->filial_id      = $request['filial'];
-            $user->cargo_desempenhado = $request['cargo_desempenhado'];
-            $user->cpf = $request['cpf'];
-            $user->save();     
-            
-              //verifica se os dados foram alterados
-            //  dd($user->filial->id);  
-            if($user)
-            {
-                return redirect("consultar/funcionario");
-            }
-            else
-            {
-                return redirect()->back()->with(['errors'=>'Falha ao editar']);
+                $user->endereco->cep = $request['cep'];
+                $user->endereco->logradouro = $request['logradouro'];
+                $user->endereco->numero = $request['numero'];
+                $user->endereco->complemento = $request['complemento'];
+                $user->endereco->bairro = $request['bairro'];
+                $user->endereco->cidade = $request['cidade'];
+                $user->endereco->uf = $request['uf'];
+                $user->endereco->save();
+
+                $user->nome = $request['nome'];
+                $user->sexo     = $request['sexo'];
+                $user->situacao = $request['situacao'];
+                $user->data_nascimento = $request['data_nascimento'];
+                $user->filial_id      = $request['filial'];
+                $user->cargo_desempenhado = $request['cargo_desempenhado'];
+                $user->cpf = $request['cpf'];
+                $user->save();     
+                if($user)
+                {
+                    return redirect("consultar/funcionario");
+                }
+            } catch (\Exception $th) {
+                return redirect()->back()->with(['error'=>'Falha ao editar os dados do funcionario']);
             }
         }
-       
-        
+        else{
+            return redirect()->back()->with(['error'=>'Não existe o usuario selecionado']);
+        }
     }
     public function resetar($id){
         $senha = \App\Model\User::random_strings(6);
-
-        return back()->with(compact('senha'));
+        if($senha){
+            return back()->with(compact('senha'));
+        }
+        else{
+            return redirect()->back()->with(['error'=>'Falha gerar a senha']);
+        }
+        
     }
     public function delete($id){
         $funcionario = User::find($id)->with('filial')->first();
-        
-        return view('pages.funcionario.delete', compact('funcionario'));
+        if($funcionario){
+            return view('pages.funcionario.delete', compact('funcionario'));
+        }
+        else{
+            return redirect()->back()->with(['error'=>'Não existe um funcionario para excluir']);
+        }
     }
     /**
      * Remove the specified resource from storage.
@@ -156,7 +174,7 @@ class RegisterController extends Controller
         }
         else
         {
-            return redirect()->back()->with(['errors'=>'Falha ao excluir']);
+            return redirect()->back()->with(['error'=>'Falha ao excluir']);
         }
     }
 }

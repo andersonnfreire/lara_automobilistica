@@ -33,21 +33,25 @@ class AutomovelController extends Controller
     }
     public function store(AutomovelRequest $request)
     {
-       // dd($request);
+        try {
 
-        $validated = $request->validated();
+            $automovel = new Automovel;
+            
+            $automovel->create([
+                'nome' => $request['nome'],
+                'cor' => $request['cor'],
+                'numero_chassi' => $request['numero_chassi'],
+                'modelo' => $request['modelo'],
+                'ano' => $request['ano'],
+                'filial_id' => $request['filial'],
+                'categoria' => $request['categoria'],
+            ]);
+            
+            return view('pages.automovel.home');
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error'=>'Erro ao inserir']);
+        }
         
-        $automovel = Automovel::create([
-            'nome' => $request['nome'],
-            'cor' => $request['cor'],
-            'numero_chassi' => $request['numero_chassi'],
-            'modelo' => $request['modelo'],
-            'ano' => $request['ano'],
-            'filial_id' => $request['filial'],
-            'categoria' => $request['categoria'],
-        ]);
-        
-        return view('pages.automovel.home');
     }
     public function show(){
 
@@ -57,40 +61,48 @@ class AutomovelController extends Controller
 
     public function edit($id){
 
-        $automovel = Automovel::where('id',$id)->with('filial')->first();
+        try {
+            $automovel = Automovel::where('id',$id)->with('filial')->first();
         
-        $filiais = Filial::all();
-        $categorias = ['entrada','hatch pequeno','hatch médio','sedã médio',
-                      'sedã grande','SUV','pick-ups'];
+            $filiais = Filial::all();
+            $categorias = ['entrada','hatch pequeno','hatch médio','sedã médio',
+                          'sedã grande','SUV','pick-ups'];
+    
+            return view('pages.automovel.create-edit',compact('automovel','categorias','filiais'));
 
-        return view('pages.automovel.create-edit',compact('automovel','categorias','filiais'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error'=>'Não encontramos o automovel no sistema']);
+        }
+        
     }
 
     public function update(AutomovelRequest $request,$id){
-        $automovel = new Automovel;
+        try {
+            $automovel = new Automovel;
 
-        $automoveis = $automovel->where('id',$id)->first();
-        if($automoveis){
+            $automoveis = $automovel->where('id',$id)->first();
+            if($automoveis){
 
-            if(strcmp($automoveis->numero_chassi,$request->numero_chassi)!=0){
-                $automoveis->numero_chassi = $request->numero_chassi;
+                if(strcmp($automoveis->numero_chassi,$request->numero_chassi)!=0){
+                    $automoveis->numero_chassi = $request->numero_chassi;
+                }
+                $automoveis->nome = $request->nome;
+                $automoveis->modelo = $request->modelo;
+                $automoveis->ano = $request->ano;
+                $automoveis->cor = $request->cor;
+                $automoveis->categoria = $request->categoria;
+                $automoveis->filial_id = $request->filial;
+                $automoveis->save();
+                
+                if($automoveis)
+                {
+                    return redirect("consultar/automovel");
+                }
+            }else{
+                return redirect()->back()->with(['error'=>'Não foi encontrado o automovel']);
             }
-            $automoveis->nome = $request->nome;
-            $automoveis->modelo = $request->modelo;
-            $automoveis->ano = $request->ano;
-            $automoveis->cor = $request->cor;
-            $automoveis->categoria = $request->categoria;
-            $automoveis->filial_id = $request->filial;
-            $automoveis->save();
-            
-            if($automoveis)
-            {
-                return redirect("consultar/automovel");
-            }
-            else
-            {
-                return redirect()->back()->with(['errors'=>'Falha ao editar']);
-            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['error'=>'Falha ao editar']);
         }
     }
     public function delete($id){
@@ -113,7 +125,7 @@ class AutomovelController extends Controller
         }
         else
         {
-            return redirect()->back()->with(['errors'=>'Falha ao excluir']);
+            return redirect()->back()->with(['error'=>'Falha ao excluir']);
         }
     }
 }

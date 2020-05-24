@@ -16,7 +16,7 @@
   <div class="card border-primary mb-3" style="max-width: auto;">
       <div class="card-header text-white bg-primary">
           <h1 class="title-pg">
-              Cadastrar Automóvel
+              Cadastro de Automóvel
           </h1>
       </div>
       

@@ -25,8 +25,8 @@ class UserRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:255',
-            'cpf' => 'required|string|digits:11|unique:users',
-            'password' => 'required',
+            'cpf' => 'required|string|max:14|min:14',
+            'password' => 'required|min:6|max:6|alpha_num',
             'sexo'     => 'required|string|max:1',
             'situacao' => 'required|boolean',
             'data_nascimento' => 'required|date',

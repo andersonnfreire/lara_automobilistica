@@ -22,11 +22,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
-
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0216137103.js" crossorigin="anonymous"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -111,6 +111,8 @@
         </nav>
 
         <main class="py-4">
+            @include('pages.flash-message')
+
             @yield('content')
         </main>
     </div>

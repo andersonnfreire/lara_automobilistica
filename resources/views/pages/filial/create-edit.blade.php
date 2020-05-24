@@ -14,7 +14,7 @@
     <div class="card border-primary mb-3" style="max-width: auto;">
         <div class="card-header text-white bg-primary">
             <h1 class="title-pg">
-                Cadastrar Filial
+                Cadastro de Filial
             </h1>
         </div>
         @if(isset($filial))

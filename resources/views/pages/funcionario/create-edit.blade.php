@@ -14,9 +14,10 @@
   @endif
 
   <div class="card border-primary mb-3" style="max-width: auto;">
+      
       <div class="card-header text-white bg-primary">
           <h1 class="title-pg">
-              Cadastrar Funcionário
+              Cadastro de Funcionários
           </h1>
       </div>
       
@@ -51,13 +52,15 @@
             </div>
             
             <div class="form-group col-md-2">
-              <label for="password">Password</label>
-              @if (Session::has('senha'))
-                <input type="password" class="form-control" name="password" id="myInput" value="{{session('senha')}}"  readonly>
+              @if (Session::has('senha') or isset($senha))
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="myInput" value="{{ isset($senha)? $senha: session('senha')}}" readonly>
+                <input type="checkbox" onclick="exibirSenha()">Show Password
               @else
-                <input type="password" class="form-control" name="password" id="myInput" value="{{ @old("password", isset($user->password)? $user->password : $senha)}}" readonly>
+                <label for="password">Password </label>
+                <input type="password" class="form-control" name="password" value="000000" readonly>
               @endif
-              <input type="checkbox" onclick="exibirSenha()">Show Password
+              
             </div>
                 
           </div>
@@ -66,7 +69,7 @@
               <div class="form-group col-md-4">
                 <label for="sexo">Sexo</label>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="{{ @old("sexo", isset($user->sexo)? $user->sexo : 'M')}}" checked>
+                  <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="K" checked>
                   <label class="form-check-label" for="sexo">
                     Masculino
                   </label>
