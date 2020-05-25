@@ -67,7 +67,7 @@ class AutomovelController extends Controller
     //listando os automoveis
     public function show(){
 
-        $automoveis = Automovel::with('filial')->get();
+        $automoveis = Automovel::with('filial')->paginate(4);
         return view('pages.automovel.home',compact('automoveis'));
     }
     //listando os dados de um automovel
@@ -128,7 +128,7 @@ class AutomovelController extends Controller
     public function delete($id){
         
         try {
-            $automovel = Automovel::find($id)->with('filial')->first();
+            $automovel = Automovel::where('id',$id)->with('filial')->first();
             return view('pages.automovel.delete', compact('automovel'));
 
         } catch (\Exception $e) {

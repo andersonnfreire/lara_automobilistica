@@ -32,8 +32,9 @@
                 </tr>
                 @endforeach
             </table>
+            {!! $automoveis->links() !!}
         </div>
     </div>
-    {{-- {!! $products->links() !!} --}}
+    
 </div>
 @endsection

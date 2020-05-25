@@ -70,7 +70,7 @@ class FilialController extends Controller
     //Listando as filiais
     public function show()
     {
-        $filiais = Filial::all();
+        $filiais = Filial::paginate(4);
         return view('pages.filial.home',compact('filiais'));
     }
     /**
@@ -134,7 +134,7 @@ class FilialController extends Controller
     }
     //Exibindo os dados da filial para serem deletados
     public function delete($id){
-        $filial = Filial::find($id)->with('endereco')->first();
+        $filial = Filial::where('id',$id)->with('endereco')->first();
         
         if($filial){
             return view('pages.filial.delete', compact('filial'));

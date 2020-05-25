@@ -36,7 +36,7 @@
                   </div>
                   <div class="form-group col-md-3">
                     <label for="cnpj">CNPJ</label>
-                    <input type="text" class="form-control" id="cnpj" name="cnpj" value="{{ @old("cnpj", isset($filial->cnpj)? $filial->cnpj : '')}}" required autocomplete="cnpj" autofocus>
+                    <input type="text" class="form-control" id="cnpj" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarCampo(this);" name="cnpj" value="{{ @old("cnpj", isset($filial->cnpj)? $filial->cnpj : '')}}" required autocomplete="cnpj" autofocus>
                   </div>
               </div>
           </div>  
@@ -85,7 +85,7 @@
             </div>
           </div> 
           <div class="form-group col">
-            <button type="submit" class="btn btn-outline-primary">Confirmar</button>
+            <button type="submit" class="btn btn-primary">Confirmar</button>
             <a type="submit" class="btn btn-danger btn-close" href="{{ route('home') }}">Cancel</a>
           </div>
         </form>

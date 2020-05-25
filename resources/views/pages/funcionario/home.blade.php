@@ -16,7 +16,7 @@
                     <th>Filial</th>
                     <th width='100px'>Ações</th>
                 </tr>
-                @foreach($filiais as  $funcionario)
+                @foreach($funcionarios as  $funcionario)
                 <tr>
                     <td>{{ $funcionario->id}}</td>
                     <td>{{ $funcionario->nome}}</td>
@@ -32,10 +32,10 @@
                     </td>
                 </tr>    
                 @endforeach
-                
             </table>
+            {!! $funcionarios->links() !!}
         </div>
     </div>
-    {{-- {!! $products->links() !!} --}}
+ 
 </div>
 @endsection

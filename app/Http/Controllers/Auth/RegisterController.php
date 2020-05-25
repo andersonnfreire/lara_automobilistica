@@ -72,8 +72,8 @@ class RegisterController extends Controller
     //Exibindo uma lista de funcionarios
     public function show(){
 
-        $filiais = \App\Model\User::with('filial')->get();
-        return view('pages.funcionario.home',compact('filiais'));
+        $funcionarios = \App\Model\User::with('filial')->paginate(4);
+        return view('pages.funcionario.home',compact('funcionarios'));
     }
 
     /**
@@ -84,7 +84,7 @@ class RegisterController extends Controller
     //Exibindo os dados do funcionario para serem alterados
     public function edit($id) {
 
-        $user = User::where('id',$id)->with('filial','endereco')->first();
+        $user = \App\Model\User::where('id',$id)->with('filial','endereco')->first();
 
         if($user)
         {
@@ -100,7 +100,7 @@ class RegisterController extends Controller
     //Alterando os dados do funcionario
     public function update(UserRequest $request, $id) {
         
-        $funcionario = new User();
+        $funcionario = new \App\Model\User();
         $user = $funcionario->where('id',$id)->with('endereco')->first();
         
         if($user)
@@ -153,7 +153,7 @@ class RegisterController extends Controller
     }
     //Exibindo os dados do usuario para serem deletados
     public function delete($id){
-        $funcionario = User::find($id)->with('filial')->first();
+        $funcionario = \App\Model\User::where('id',$id)->with('filial')->first();
         if($funcionario){
             return view('pages.funcionario.delete', compact('funcionario'));
         }
@@ -168,7 +168,7 @@ class RegisterController extends Controller
      */
     //Excluindo o usuário
     public function destroy($id) {
-        $user = User::find($id)->endereco;
+        $user = \App\Model\User::find($id)->endereco;
         $delete = $user->delete();
         
         if($delete)

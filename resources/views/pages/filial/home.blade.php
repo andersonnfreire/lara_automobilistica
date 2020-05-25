@@ -32,8 +32,10 @@
                 </tr>    
                 @endforeach
             </table>
+            {!! $filiais->links() !!}
         </div>
+            
     </div>
-    {{-- {!! $products->links() !!} --}}
+    
 </div>
 @endsection
